@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" ptype="MONOLITH" ppkg="schoolmgmt" epkg="rune.max.school.model" v="5.2" rws="_1576690369461103" Pws="_1576690369461103" cws="_1576690369461103" persistenceUnitName="SCHOOL_PU" sm="false" xs="false" id="_1576690369461102" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd">
+    <jpa:entity compositePrimaryKeyClass="StudentPK" abs="false" class="Student" v="true" jbn="false" xre="false" m="false" rootElement="_1576690369461102" id="_1576690379454104">
+        <jpa:ath>Max Rune</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="name" id="_1576690402062107">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_1576690409928108" connected-attribute-id="_1576691005184128" v="true" xvt="" name="education" id="_1576691005183127">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:many-to-one>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_1576690379470105">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="DEFAULT"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Student.findAll">
+            <jpa:query>Select e from Student e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Student.findByName">
+            <jpa:query>Select s from Student s where s.name=:name</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="EducationPK" abs="false" class="Education" v="true" jbn="false" xre="false" m="false" rootElement="_1576690369461102" id="_1576690409928108">
+        <jpa:ath>Max Rune</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="name" id="_1576690421028111">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1576690440597112" connected-attribute-id="_1576690989155124" v="true" xvt="" name="courses" id="_1576690989157125">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:one-to-many>
+            <jpa:one-to-many orp="false" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1576690379454104" connected-attribute-id="_1576691005183127" v="true" xvt="" name="students" id="_1576691005184128">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:one-to-many>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_1576690409928109">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="DEFAULT"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Education.findAll">
+            <jpa:query>Select e from Education e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Education.findByName">
+            <jpa:query>Select e from Education e where e.name=:name</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="CoursePK" abs="false" class="Course" v="true" jbn="false" xre="false" m="false" rootElement="_1576690369461102" id="_1576690440597112">
+        <jpa:ath>Max Rune</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="name" id="_1576690446147115">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:many-to-one optional="true" primaryKey="false" connected-entity-id="_1576690409928108" connected-attribute-id="_1576690989157125" v="true" xvt="" name="education" id="_1576690989155124">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:many-to-one>
+            <jpa:many-to-many collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1576690568390116" connected-attribute-id="_1576690961488121" v="true" xvt="" name="teachers" id="_1576690961489122">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:many-to-many>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_1576690440598113">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="DEFAULT"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Course.findAll">
+            <jpa:query>Select e from Course e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Course.findByName">
+            <jpa:query>Select c from Course c where c.name=:name</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:entity compositePrimaryKeyClass="TeacherPK" abs="false" class="Teacher" v="true" jbn="false" xre="false" m="false" rootElement="_1576690369461102" id="_1576690568390116">
+        <jpa:ath>Max Rune</jpa:ath>
+        <jpa:attributes>
+            <jpa:basic attribute-type="String" v="true" xvt="" name="name" id="_1576690582547119">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:basic>
+            <jpa:many-to-many own="true" collection-type="java.util.List" cit="java.util.ArrayList" connected-entity-id="_1576690440597112" connected-attribute-id="_1576690961489122" v="true" xvt="" name="courses" id="_1576690961488121">
+                <jpa:xwm/>
+                <jpa:xm/>
+            </jpa:many-to-many>
+            <jpa:id attribute-type="Long" v="true" xvt="" name="id" id="_1576690568390117">
+                <jpa:xwm/>
+                <jpa:xm/>
+                <jpa:generated-value strategy="DEFAULT"/>
+            </jpa:id>
+        </jpa:attributes>
+        <jpa:nq e="false" name="Teacher.findAll">
+            <jpa:query>Select e from Teacher e</jpa:query>
+        </jpa:nq>
+        <jpa:nq e="false" name="Teacher.findByName">
+            <jpa:query>Select t from Teacher t where t.name=:name</jpa:query>
+        </jpa:nq>
+    </jpa:entity>
+    <jpa:c>
+        <db u="jdbc:mysql://localhost:3306/schooldb?zeroDateTimeBehavior=convertToNull" n="root" p="root" d="com.mysql.jdbc.Driver"/>
+    </jpa:c>
+    <jpa:wsl>
+        <jpa:ws n="Main" id="_1576690369461103">
+            <i ref="_1576690379454104" x="528" y="480"/>
+            <i ref="_1576690440597112" x="702" y="70"/>
+            <i ref="_1576690568390116" x="525" y="256"/>
+            <i ref="_1576690409928108" x="216" y="214"/>
+        </jpa:ws>
+    </jpa:wsl>
+</jpa:entity-mappings>
