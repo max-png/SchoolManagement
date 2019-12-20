@@ -1,7 +1,5 @@
 package schoolmgmt;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.*;
 import schoolmgmt.domain.*;
 
@@ -43,14 +41,59 @@ public class main {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("SCHOOL_PU");
         EntityManager em = emf.createEntityManager();
 
+//        em.getTransaction().begin();
+//        em.remove(musicEducation);
+//        em.getTransaction().commit();
+//        
+        Student max = new Student();
+        Student mack = new Student();
+        mack.setStudentName("Markus Mörk");
+        mack.setEducation(languageEdu);
+
+        max.setStudentName("Max Rune");
+        max.setEducation(musicEducation);
+
         em.getTransaction().begin();
+
         em.persist(musicEducation);
+        em.persist(max);
+        em.persist(mack);
         em.persist(languageEdu);
         em.getTransaction().commit();
 
-        em.getTransaction().begin();
-        em.remove(musicEducation);
-        em.getTransaction().commit();
+        Query q = em.createQuery("Select s From Student s where s.studentName = :name");
+        q.setParameter("name", "Max Rune");
+        try {
+            Student s = (Student) q.getSingleResult();
+
+            System.out.println(s.getStudentName() + " is studying " + s.getEducation().getEducationName());
+            System.out.println("The courses in " + s.getEducation().getEducationName() + " are: ");
+            for (Course temp : s.getEducation().getCourses()) {
+                System.out.println(temp.getCourseName());
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        Query q1 = em.createQuery("Select s From Student s where s.studentName = :name");
+        q1.setParameter("name", "Markus Mörk");
+        try {
+            Student s = (Student) q1.getSingleResult();
+
+            System.out.println(s.getStudentName() + " is studying " + s.getEducation().getEducationName());
+            System.out.println("The courses in " + s.getEducation().getEducationName() + " are: ");
+            for (Course temp : s.getEducation().getCourses()) {
+                System.out.println(temp.getCourseName());
+                System.out.println("The teacher for " + temp.getCourseName() + " is ");
+                for (Teacher t : temp.getTeachers()) {
+                    System.out.println(t.getTeacherName());
+                }
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
     }
 

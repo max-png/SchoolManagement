@@ -27,7 +27,7 @@ public class Education {
     @OneToMany(mappedBy = "education", cascade=CascadeType.ALL)
     private List<Course> courses;
 
-    @OneToMany(mappedBy = "education")
+    @OneToMany(mappedBy = "education", cascade=CascadeType.PERSIST)
     private List<Student> students;
 
     public Long getId() {
