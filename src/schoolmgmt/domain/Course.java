@@ -18,16 +18,16 @@ import javax.persistence.ManyToOne;
 public class Course {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Basic
     private String courseName;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Education education;
 
-    @ManyToMany(mappedBy = "courses", cascade=CascadeType.PERSIST)
+    @ManyToMany(mappedBy = "courses", cascade = CascadeType.PERSIST)
     private List<Teacher> teachers;
 
     public Long getId() {
@@ -71,6 +71,11 @@ public class Course {
 
     public void removeTeacher(Teacher teacher) {
         getTeachers().remove(teacher);
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" + "id=" + id + ", courseName=" + courseName + ", education=" + education + ", teachers=" + teachers + '}';
     }
 
 }

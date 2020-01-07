@@ -24,10 +24,10 @@ public class Education {
     @Basic
     private String educationName;
 
-    @OneToMany(mappedBy = "education", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "education", cascade=CascadeType.PERSIST)
     private List<Course> courses;
 
-    @OneToMany(mappedBy = "education", cascade=CascadeType.PERSIST)
+    @OneToMany(mappedBy = "education", cascade=CascadeType.ALL)
     private List<Student> students;
 
     public Long getId() {
