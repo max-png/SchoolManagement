@@ -16,15 +16,22 @@ public class Menu {
     public static void mainMenu() {
         boolean running = true;
         while (running) {
-            System.out.println("What would you like to do?");
-            System.out.println("1. Add course\n0. Exit");
+            System.out.println("What would you like to explore?");
+            System.out.println("1. Courses\n2. Educations\n3. Students\n4. Teachers\n0. Exit");
             int choice = sc.nextInt();
             sc.nextLine();
             switch (choice) {
                 case 1:
-                    addCourse();
+                    coursesManager();
                     break;
-
+                case 2:
+                    educationsManager();
+                    break;
+                case 3:
+                    studentsManager();
+                    break;
+                case 4:
+                    teachersManager();
                 case 0:
                     running = false;
                     break;
@@ -60,11 +67,24 @@ public class Menu {
                 Course selectedCourse = nextCourse;
                 System.out.println("Selected course " + nextCourse.getId() + ": " + nextCourse.getCourseName());
                 final Course course = selectedCourse;
-                
-                
-                
             }
         });
+    }
+
+    private static void coursesManager() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private static void educationsManager() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private static void studentsManager() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private static void teachersManager() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

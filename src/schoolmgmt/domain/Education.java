@@ -17,6 +17,13 @@ import javax.persistence.OneToMany;
 @Entity
 public class Education {
 
+    public Education(String educationName) {
+        this.educationName = educationName;
+    }
+
+    public Education() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

@@ -30,6 +30,13 @@ public class Course {
     @ManyToMany(mappedBy = "courses", cascade = CascadeType.PERSIST)
     private List<Teacher> teachers;
 
+    public Course() {
+    }
+
+    public Course(String courseName) {
+        this.courseName = courseName;
+    }
+
     public Long getId() {
         return id;
     }

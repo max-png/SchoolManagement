@@ -14,6 +14,13 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Student {
 
+    public Student(String studentName) {
+        this.studentName = studentName;
+    }
+
+    public Student() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

@@ -16,6 +16,13 @@ import javax.persistence.ManyToMany;
 @Entity
 public class Teacher {
 
+    public Teacher(String teacherName) {
+        this.teacherName = teacherName;
+    }
+
+    public Teacher() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

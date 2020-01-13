@@ -4,13 +4,18 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 import schoolmgmt.domain.Student;
 
 public class StudentDao implements Dao<Student> {
 
-    EntityManagerFactory emf;
-    EntityManager em;
+    protected EntityManagerFactory emf;
+    protected EntityManager em;
+
+    public StudentDao() {
+        emf = Persistence.createEntityManagerFactory("SCHOOL_PU");
+    }
 
     @Override
     public void add(Student t) {
@@ -88,16 +93,16 @@ public class StudentDao implements Dao<Student> {
     @Override
     public List<Student> getAll() {
         em = emf.createEntityManager();
-        try{
+        try {
             em.getTransaction().begin();
             Query q = em.createQuery("select c from Student c");
             List<Student> allStudents = (List<Student>) q.getResultList();
             em.getTransaction().commit();
             return allStudents;
-        } catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Error in StudentDao getAll(): " + e);
             return null;
-        } finally{
+        } finally {
             em.close();
         }
     }
