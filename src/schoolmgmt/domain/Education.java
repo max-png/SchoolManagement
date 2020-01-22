@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.PreRemove;
 
 /**
  * @author Max Rune
@@ -31,11 +32,21 @@ public class Education {
     @Basic
     private String educationName;
 
-    @OneToMany(mappedBy = "education", cascade=CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Course> courses;
 
-    @OneToMany(mappedBy = "education", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy = "education", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Student> students;
+
+    @PreRemove
+    private void preRemove() {
+        for (Course c : courses) {
+            c.setEducation(null);
+        }
+        for (Student s : students) {
+            s.setEducation(null);
+        }
+    }
 
     public Long getId() {
         return id;

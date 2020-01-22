@@ -43,6 +43,7 @@ public class SampleData {
         Course c6 = new Course("Kritiskt tänkande");
         Course c7 = new Course("Värdeteori");
         Course c8 = new Course("Etik");
+        Teacher t4 = new Teacher("Olle Risberg");
         e3.addCourse(c6);
         e3.addCourse(c7);
         e3.addCourse(c8);
@@ -63,7 +64,7 @@ public class SampleData {
         eDao.add(e1);
         eDao.add(e2);
         eDao.add(e3);
-        
+
     }
 
 }

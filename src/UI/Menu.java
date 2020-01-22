@@ -1,4 +1,4 @@
-package schoolmgmt;
+package UI;
 
 import Dao.CourseDao;
 import java.util.ArrayList;
@@ -16,19 +16,19 @@ public class Menu {
     public static void mainMenu() {
         boolean running = true;
         while (running) {
-            System.out.println("What would you like to explore?");
+            System.out.println("\nWhat would you like to explore?");
             System.out.println("1. Courses\n2. Educations\n3. Students\n4. Teachers\n0. Exit");
             int choice = sc.nextInt();
             sc.nextLine();
             switch (choice) {
                 case 1:
-                    coursesManager();
+                    CoursesManager.main();
                     break;
                 case 2:
-                    educationsManager();
+                    EducationsManager.main();
                     break;
                 case 3:
-                    studentsManager();
+                    StudentsManager.main();
                     break;
                 case 4:
                     teachersManager();
@@ -69,18 +69,6 @@ public class Menu {
                 final Course course = selectedCourse;
             }
         });
-    }
-
-    private static void coursesManager() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private static void educationsManager() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private static void studentsManager() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private static void teachersManager() {

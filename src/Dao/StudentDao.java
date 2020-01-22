@@ -43,7 +43,7 @@ public class StudentDao implements Dao<Student> {
             em.merge(update);
             et.commit();
         } catch (Exception e) {
-            System.out.println("Error in StudentDao add(): " + e);
+            System.out.println("Error in StudentDao update(): " + e);
         } finally {
             em.close();
         }

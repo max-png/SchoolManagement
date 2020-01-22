@@ -14,8 +14,6 @@ public class CourseDao implements Dao<Course> {
     protected EntityManager em;
 
     public CourseDao() {
-//        ParameterizedType genericSuperclass = (ParameterizedType) getClass().getGenericSuperclass();
-//        this.entityClass = (Class) genericSuperclass.getActualTypeArguments()[1];
         emf = Persistence.createEntityManagerFactory("SCHOOL_PU");
     }
 
@@ -28,7 +26,7 @@ public class CourseDao implements Dao<Course> {
             em.persist(t);
             et.commit();
         } catch (Exception e) {
-            System.out.println("Error in CourseJpaDao method add(): " + e);
+            System.out.println("Error in CourseDao method add(): " + e);
         }
     }
 
@@ -46,7 +44,7 @@ public class CourseDao implements Dao<Course> {
             em.merge(update);
             et.commit();
         } catch (Exception e) {
-            System.out.println("Error in CourseJpaDao method update(): " + e);
+            System.out.println("Error in CourseDao method update(): " + e);
         } finally {
             em.close();
         }
@@ -76,7 +74,7 @@ public class CourseDao implements Dao<Course> {
             em.remove(course);
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error in removeById CourseJpaDao: " + e);
+            System.out.println("Error in removeById CourseDao: " + e);
         } finally {
             em.close();
         }
@@ -90,7 +88,7 @@ public class CourseDao implements Dao<Course> {
             Course course = em.find(Course.class, id);
             return course;
         } catch (Exception e) {
-            System.out.println("Error in getById JpaDao: " + e);
+            System.out.println("Error in getById CourseDao: " + e);
             return null;
         }
     }
@@ -105,7 +103,7 @@ public class CourseDao implements Dao<Course> {
             em.getTransaction().commit();
             return allCourses;
         } catch (Exception e) {
-            System.out.println("Error in getAll: " + e);
+            System.out.println("Error in getAll CourseDao: " + e);
             return null;
         } finally {
             em.close();

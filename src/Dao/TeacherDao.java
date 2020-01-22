@@ -45,7 +45,7 @@ public class TeacherDao implements Dao<Teacher> {
             em.merge(update);
             et.commit();
         } catch (Exception e) {
-            System.out.println("Error in TeacherDao add(): " + e);
+            System.out.println("Error in TeacherDao update(): " + e);
         } finally {
             em.close();
         }

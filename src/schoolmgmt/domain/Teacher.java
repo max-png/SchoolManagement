@@ -30,7 +30,7 @@ public class Teacher {
     @Basic
     private String teacherName;
 
-    @ManyToMany(cascade=CascadeType.PERSIST)
+    @ManyToMany
     private List<Course> courses;
 
     public Long getId() {
