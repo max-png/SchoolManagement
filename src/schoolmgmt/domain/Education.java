@@ -26,18 +26,20 @@ public class Education {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Basic
     private String educationName;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "education", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Course> courses;
 
     @OneToMany(mappedBy = "education", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Student> students;
 
+    //Kan inte ta bort education pga education har barn så detta måste finnas.
+    
     @PreRemove
     private void preRemove() {
         for (Course c : courses) {

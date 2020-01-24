@@ -1,9 +1,7 @@
 package UI;
 
 import Dao.StudentDao;
-import static UI.CoursesManager.cDao;
 import static UI.EducationsManager.eDao;
-import java.util.List;
 import java.util.Scanner;
 import schoolmgmt.domain.Course;
 import schoolmgmt.domain.Education;
@@ -16,7 +14,7 @@ public class StudentsManager {
 
     public static void main() {
         System.out.println("\n** Students **");
-        System.out.println("1. Add\n2. Update\n3. Show specific\n4. Show all\n5. Remove\n0. Back\n");
+        System.out.println("1. Add\n2. Move\n3. Show specific\n4. Show all\n5. Remove\n0. Back\n");
         boolean loop = true;
         while (loop) {
             int choice = sc.nextInt();
@@ -81,17 +79,19 @@ public class StudentsManager {
             System.out.println("Updating student: " + s.getStudentName());
             System.out.println("Select new education: ");
 
-            s.getEducation().removeStudent(s);
+            Education oldEdu = s.getEducation();
+            Education newEdu = EducationsManager.selectEducation();
 
-            Education edu = EducationsManager.selectEducation();
-
-            s.setEducation(edu);
-            edu.addStudent(s);
+            s.setEducation(newEdu);
+            newEdu.addStudent(s);
 
             try {
+                oldEdu.removeStudent(s);
+                eDao.update(oldEdu);
                 sDao.update(s);
-                eDao.update(edu);
-                System.out.println("Moved " + s.getStudentName() + " to " + edu.getEducationName());
+                eDao.update(newEdu);
+
+                System.out.println("Moved " + s.getStudentName() + " to " + newEdu.getEducationName());
             } catch (Exception e) {
                 System.out.println("Error when updating education: " + e);
             } finally {
@@ -106,9 +106,13 @@ public class StudentsManager {
         System.out.println("\nShow student details: ");
         Long choice = sc.nextLong();
         Student show = sDao.getById(choice);
-        System.out.println(show.getStudentName() + " is enrolled to " + show.getEducation().getEducationName());
-        for (Course c : show.getEducation().getCourses()) {
-            System.out.println(c.getCourseName());
+        if (show.getEducation() == null) {
+            System.out.println("Is not enrolled.");
+        } else {
+            System.out.println(show.getStudentName() + " is enrolled to " + show.getEducation().getEducationName());
+            for (Course c : show.getEducation().getCourses()) {
+                System.out.println(c.getCourseName());
+            }
         }
     }
 
@@ -128,8 +132,6 @@ public class StudentsManager {
         showAll();
         System.out.println("Remove which student by ID?");
         Long id = sc.nextLong();
-
-        Education edu = sDao.getById(id).getEducation();
 
         System.out.println("Removing: " + sDao.getById(id).getStudentName());
         sDao.removeById(id);

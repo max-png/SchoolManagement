@@ -60,10 +60,13 @@ public class CoursesManager {
         Long id = sc.nextLong();
         Education edu = EducationsManager.eDao.getById(id);
 
+        c.setEducation(edu);
         edu.addCourse(c);
 
         try {
+            cDao.add(c);
             EducationsManager.eDao.update(edu);
+
             System.out.println(c.getCourseName() + " added to " + c.getEducation().getEducationName());
         } catch (Exception e) {
             System.out.println("Error while adding new course: " + e);
@@ -77,6 +80,7 @@ public class CoursesManager {
 
         Long id = sc.nextLong();
         Course c = cDao.getById(id);
+
         if (c == null) {
             System.out.println("No such ID");
             update();
@@ -85,7 +89,9 @@ public class CoursesManager {
             System.out.println("Updating course: " + c.getCourseName());
             System.out.println("Set new name: ");
             String oldName = c.getCourseName();
+
             c.setCourseName(sc.nextLine());
+
             System.out.println("Changed name from " + oldName + " to " + c.getCourseName());
             try {
                 cDao.update(c);
@@ -138,14 +144,10 @@ public class CoursesManager {
         showAll();
         System.out.println("Remove which course by ID?");
         Long id = sc.nextLong();
+
         System.out.println("Removing: " + cDao.getById(id).getCourseName());
-
-        Education edu = cDao.getById(id).getEducation();
-
         cDao.removeById(id);
-        System.out.println("Updating correspoding education " + edu.getEducationName());
 
-        EducationsManager.eDao.update(edu);
         main();
     }
 

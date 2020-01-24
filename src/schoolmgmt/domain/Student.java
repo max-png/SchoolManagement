@@ -27,7 +27,7 @@ public class Student {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Basic
@@ -36,22 +36,11 @@ public class Student {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Education education;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Course> courses;
-
     @PreRemove
     private void removeStudentFromEducation() {
-        education.getStudents().remove(this);
-    }
-
-    @PreUpdate
-    private void moveStudentFromEducation() {
-        this.setEducation(null); // Vid borttagning går detta bra, men vid flytt får den ingen ny education.
-    }
-
-    @PostUpdate
-    private void postupdate() {
-        
+        if (education != null) {
+            education.getStudents().remove(this);
+        }
     }
 
     public Long getId() {
@@ -76,14 +65,6 @@ public class Student {
 
     public void setEducation(Education education) {
         this.education = education;
-    }
-
-    public List<Course> getCourses() {
-        return courses;
-    }
-
-    public void setCourses(List<Course> courses) {
-        this.courses = courses;
     }
 
 }

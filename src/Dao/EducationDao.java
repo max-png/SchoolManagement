@@ -25,7 +25,6 @@ public class EducationDao implements Dao<Education> {
             et.begin();
             em.persist(t);
             et.commit();
-
         } catch (Exception e) {
             System.out.println("Error in EducationDao method add(): " + e);
         } finally {
@@ -91,6 +90,8 @@ public class EducationDao implements Dao<Education> {
         } catch (Exception e) {
             System.out.println("Error in EducationDao getById(): " + e);
             return null;
+        } finally {
+            em.close();
         }
     }
 

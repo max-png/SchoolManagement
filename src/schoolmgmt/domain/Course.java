@@ -19,17 +19,22 @@ import javax.persistence.PreRemove;
 public class Course {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Basic
     private String courseName;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne
     private Education education;
 
     @ManyToMany(mappedBy = "courses", cascade = CascadeType.PERSIST)
     private List<Teacher> teachers;
+
+    @PreRemove
+    private void removeCourseFromEducation() {
+        education.getCourses().remove(this);
+    }
 
     public Course() {
     }

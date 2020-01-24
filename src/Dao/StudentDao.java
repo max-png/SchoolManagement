@@ -27,6 +27,8 @@ public class StudentDao implements Dao<Student> {
             et.commit();
         } catch (Exception e) {
             System.out.println("Error in StudentDao method add(): " + e);
+        } finally {
+            em.close();
         }
     }
 
@@ -87,6 +89,8 @@ public class StudentDao implements Dao<Student> {
         } catch (Exception e) {
             System.out.println("Error in StudentDao getById(): " + e);
             return null;
+        } finally {
+            em.close();
         }
     }
 

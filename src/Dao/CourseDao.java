@@ -27,6 +27,8 @@ public class CourseDao implements Dao<Course> {
             et.commit();
         } catch (Exception e) {
             System.out.println("Error in CourseDao method add(): " + e);
+        } finally {
+            em.close();
         }
     }
 
@@ -90,6 +92,8 @@ public class CourseDao implements Dao<Course> {
         } catch (Exception e) {
             System.out.println("Error in getById CourseDao: " + e);
             return null;
+        } finally {
+            em.close();
         }
     }
 

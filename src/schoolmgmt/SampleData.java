@@ -44,6 +44,8 @@ public class SampleData {
         Course c7 = new Course("Värdeteori");
         Course c8 = new Course("Etik");
         Teacher t4 = new Teacher("Olle Risberg");
+        t4.addCourse(c6);
+        
         e3.addCourse(c6);
         e3.addCourse(c7);
         e3.addCourse(c8);

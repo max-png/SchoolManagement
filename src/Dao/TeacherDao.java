@@ -89,6 +89,8 @@ public class TeacherDao implements Dao<Teacher> {
         } catch (Exception e) {
             System.out.println("Error in TeacherDao getById(): " + e);
             return null;
+        } finally {
+            em.close();
         }
     }
 
