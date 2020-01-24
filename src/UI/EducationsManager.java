@@ -78,6 +78,7 @@ public class EducationsManager {
 
         Long id = sc.nextLong();
         Education edu = eDao.getById(id);
+        
         if (edu == null) {
             System.out.println("No such ID");
             update();

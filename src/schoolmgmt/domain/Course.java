@@ -33,7 +33,9 @@ public class Course {
 
     @PreRemove
     private void removeCourseFromEducation() {
-        education.getCourses().remove(this);
+        if (education != null) {
+            education.getCourses().remove(this);
+        }
     }
 
     public Course() {

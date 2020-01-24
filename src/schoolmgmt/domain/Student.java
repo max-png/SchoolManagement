@@ -1,17 +1,13 @@
 package schoolmgmt.domain;
 
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.PostUpdate;
 import javax.persistence.PreRemove;
-import javax.persistence.PreUpdate;
 
 /**
  * @author Max Rune

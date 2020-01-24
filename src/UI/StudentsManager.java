@@ -80,9 +80,11 @@ public class StudentsManager {
             System.out.println("Select new education: ");
 
             Education oldEdu = s.getEducation();
+
             Education newEdu = EducationsManager.selectEducation();
 
             s.setEducation(newEdu);
+
             newEdu.addStudent(s);
 
             try {
